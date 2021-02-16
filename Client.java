@@ -3,11 +3,11 @@ import java.io.DataOutputStream;
 import java.net.Socket;
 import java.util.Scanner;
 
-import jdk.internal.org.jline.utils.InputStreamReader;
+import java.io.InputStreamReader;
 
 public class Client {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         if (args.length == 1 || args.length > 2) {
             System.out.println("Incorrect use of command: java Client <hostname> <port>");
             return;
@@ -28,6 +28,7 @@ public class Client {
         }
 
         String senderEmail, recipientEmail, subject, message = "";
+        Scanner sc = new Scanner(System.in);
 
         System.out.print("Enter your email: ");
         senderEmail = sc.nextLine();
@@ -43,7 +44,7 @@ public class Client {
         BufferedReader inFromServer = new BufferedReader(new InputStreamReader(sock.getInputStream()));
         
         String input, response = "";
-        Scanner sc = new Scanner(System.in);
+        
         while(true) {
             System.out.println("Enter 'quit' to disconnect...");
             System.out.println(senderEmail + "@client: ");
@@ -54,7 +55,7 @@ public class Client {
 
             outToServer.writeBytes(input + "\n");
             response = inFromServer.readLine();
-            System.out.println(mail + "@server: " + response);
+            System.out.println("mail@server: " + response);
         }
     }
 }
