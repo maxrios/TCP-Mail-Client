@@ -44,6 +44,8 @@ public class Client {
         DataOutputStream outToServer = new DataOutputStream(sock.getOutputStream());
         BufferedReader inFromServer = new BufferedReader(new InputStreamReader(sock.getInputStream()));
         
+        System.out.println(inFromServer.readLine());
+
         String input = "";
         
         input = "HELO\r\n";
