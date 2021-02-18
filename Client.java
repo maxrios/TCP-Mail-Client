@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.net.Socket;
+import java.util.Base64;
 import java.util.Scanner;
 
 import java.io.InputStreamReader;
@@ -54,13 +55,13 @@ public class Client {
         System.out.println(inFromServer.readLine());
         
         System.out.print("Enter your username: ");
-        input = sc.nextLine() + "\r\n";
+        input = Base64.getEncoder().encodeToString(sc.nextLine().getBytes()) + "\r\n";
         outToServer.write(input.getBytes("US-ASCII"));
         System.out.println(inFromServer.readLine());
 
 
         System.out.print("Enter your password: ");
-        input = sc.nextLine() + "\r\n";
+        input = Base64.getEncoder().encodeToString(sc.nextLine().getBytes()) + "\r\n";
         outToServer.write(input.getBytes("US-ASCII"));
         System.out.println(inFromServer.readLine());
 
