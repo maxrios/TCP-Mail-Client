@@ -45,38 +45,53 @@ public class Client {
         
         String input, response = "";
         
-
-        outToServer.writeBytes("HELO \r\n");
+        input = "HELO \r\n";
+        outToServer.write(input.getBytes("US-ASCII"));
         System.out.println(inFromServer.readLine());
-        outToServer.writeBytes("AUTH LOGIN");
-        // System.out.println(inFromServer.readLine());
+
+        input = "AUTH LOGIN \r\n";
+        outToServer.write(input.getBytes("US-ASCII"));
+        System.out.println(inFromServer.readLine());
         
         System.out.print("Enter your username: ");
-        outToServer.writeBytes(sc.nextLine() + "\r\n");
-        // System.out.println(inFromServer.readLine());
+        input = sc.nextLine() + "\r\n";
+        outToServer.write(input.getBytes("US-ASCII"));
+        System.out.println(inFromServer.readLine());
 
 
         System.out.print("Enter your password: ");
-        outToServer.writeBytes(sc.nextLine() + "\r\n");
+        input = sc.nextLine() + "\r\n";
+        outToServer.write(input.getBytes("US-ASCII"));
         System.out.println(inFromServer.readLine());
 
-        outToServer.writeBytes("MAIL FROM:<" + senderEmail + "> \r\n");
+        input = "MAIL FROM: <" + senderEmail + "> \r\n";
+        outToServer.write(input.getBytes("US-ASCII"));
         System.out.println(inFromServer.readLine());
         
-        outToServer.writeBytes("RCPT TO:<" + recipientEmail + "> \r\n");
+
+        input = "RCPT TO: <" + recipientEmail + "> \r\n";
+        outToServer.write(input.getBytes("US-ASCII"));
         System.out.println(inFromServer.readLine());
         
-        outToServer.writeBytes("DATA \r\n");
+
+        input = "DATA \r\n";
+        outToServer.write(input.getBytes("US-ASCII"));
         System.out.println(inFromServer.readLine());
 
-        outToServer.writeBytes("SUBJECT:" + subject + " \r\n\n");
-
-        outToServer.writeBytes(message + " \r\n");
         
-        outToServer.writeBytes(". \r\n");
+        input = "SUBJECT: " + subject + " \r\n";
+        outToServer.write(input.getBytes("US-ASCII"));
+        
+        input = "\r\n" + message + " \r\n";
+        outToServer.write(input.getBytes("US-ASCII"));
+        
+        input = ". \r\n";
+        outToServer.write(input.getBytes("US-ASCII"));
         System.out.println(inFromServer.readLine());
         
-        outToServer.writeBytes("QUIT \r\n");
+
+        input = "QUIT \r\n";
+        outToServer.write(input.getBytes("US-ASCII"));
         System.out.println(inFromServer.readLine());
         
 
