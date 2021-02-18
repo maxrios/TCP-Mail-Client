@@ -46,11 +46,11 @@ public class Client {
         
         String input, response = "";
         
-        input = "HELO \r\n";
+        input = "HELO\r\n";
         outToServer.write(input.getBytes("US-ASCII"));
         System.out.println(inFromServer.readLine());
 
-        input = "AUTH LOGIN \r\n";
+        input = "AUTH LOGIN\r\n";
         outToServer.write(input.getBytes("US-ASCII"));
         System.out.println(inFromServer.readLine());
         
@@ -65,33 +65,33 @@ public class Client {
         outToServer.write(input.getBytes("US-ASCII"));
         System.out.println(inFromServer.readLine());
 
-        input = "MAIL FROM: <" + senderEmail + "> \r\n";
+        input = "MAIL FROM: <" + senderEmail + ">\r\n";
         outToServer.write(input.getBytes("US-ASCII"));
         System.out.println(inFromServer.readLine());
         
 
-        input = "RCPT TO: <" + recipientEmail + "> \r\n";
+        input = "RCPT TO: <" + recipientEmail + ">\r\n";
         outToServer.write(input.getBytes("US-ASCII"));
         System.out.println(inFromServer.readLine());
         
 
-        input = "DATA \r\n";
+        input = "DATA\r\n";
         outToServer.write(input.getBytes("US-ASCII"));
         System.out.println(inFromServer.readLine());
 
         
-        input = "SUBJECT: " + subject + " \r\n";
+        input = "SUBJECT: " + subject + "\r\n";
         outToServer.write(input.getBytes("US-ASCII"));
         
-        input = "\r\n" + message + " \r\n";
+        input = "\r\n" + message + "\r\n";
         outToServer.write(input.getBytes("US-ASCII"));
         
-        input = ". \r\n";
+        input = ".\r\n";
         outToServer.write(input.getBytes("US-ASCII"));
         System.out.println(inFromServer.readLine());
         
 
-        input = "QUIT \r\n";
+        input = "QUIT\r\n";
         outToServer.write(input.getBytes("US-ASCII"));
         System.out.println(inFromServer.readLine());
         
