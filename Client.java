@@ -49,10 +49,13 @@ public class Client {
         outToServer.writeBytes("HELO \r\n");
         System.out.println(inFromServer.readLine());
         outToServer.writeBytes("AUTH LOGIN");
-        System.out.println(inFromServer.readLine());
+        // System.out.println(inFromServer.readLine());
+        
         System.out.print("Enter your username: ");
         outToServer.writeBytes(sc.nextLine() + "\r\n");
-        System.out.println(inFromServer.readLine());
+        // System.out.println(inFromServer.readLine());
+
+
         System.out.print("Enter your password: ");
         outToServer.writeBytes(sc.nextLine() + "\r\n");
         System.out.println(inFromServer.readLine());
