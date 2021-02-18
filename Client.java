@@ -45,6 +45,17 @@ public class Client {
         
         String input, response = "";
         
+
+        outToServer.writeBytes("HELO \r\n");
+        System.out.println(inFromServer.readLine());
+        outToServer.writeBytes("AUTH LOGIN");
+        System.out.print("Enter your username: ");
+        outToServer.writeBytes(sc.nextLine());
+        System.out.print("Enter your password: ");
+        outToServer.writeBytes(sc.nextLine() + "\r\n");
+        
+        System.out.println(inFromServer.readLine());
+
         while(true) {
             System.out.println("Enter 'quit' to disconnect...");
             System.out.println(senderEmail + "@client: ");
@@ -57,5 +68,8 @@ public class Client {
             response = inFromServer.readLine();
             System.out.println("mail@server: " + response);
         }
+
+        sc.close();
+        sock.close();
     }
 }
