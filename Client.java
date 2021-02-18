@@ -44,7 +44,7 @@ public class Client {
         DataOutputStream outToServer = new DataOutputStream(sock.getOutputStream());
         BufferedReader inFromServer = new BufferedReader(new InputStreamReader(sock.getInputStream()));
         
-        String input, response = "";
+        String input = "";
         
         input = "HELO\r\n";
         outToServer.write(input.getBytes("US-ASCII"));
@@ -96,18 +96,18 @@ public class Client {
         System.out.println(inFromServer.readLine());
         
 
-        while(true) {
-            System.out.println("Enter 'quit' to disconnect...");
-            System.out.println(senderEmail + "@client: ");
-            input = sc.nextLine();
-            if (input.equals("quit")) {
-                break;
-            }
+        // while(true) {
+        //     System.out.println("Enter 'quit' to disconnect...");
+        //     System.out.println(senderEmail + "@client: ");
+        //     input = sc.nextLine();
+        //     if (input.equals("quit")) {
+        //         break;
+        //     }
 
-            outToServer.writeBytes(input + "\n");
-            response = inFromServer.readLine();
-            System.out.println("mail@server: " + response);
-        }
+        //     outToServer.writeBytes(input + "\n");
+        //     response = inFromServer.readLine();
+        //     System.out.println("mail@server: " + response);
+        // }
 
         sc.close();
         sock.close();
