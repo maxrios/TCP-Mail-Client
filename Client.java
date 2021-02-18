@@ -49,12 +49,33 @@ public class Client {
         outToServer.writeBytes("HELO \r\n");
         System.out.println(inFromServer.readLine());
         outToServer.writeBytes("AUTH LOGIN");
+        System.out.println(inFromServer.readLine());
         System.out.print("Enter your username: ");
-        outToServer.writeBytes(sc.nextLine());
+        outToServer.writeBytes(sc.nextLine() + "\r\n");
+        System.out.println(inFromServer.readLine());
         System.out.print("Enter your password: ");
         outToServer.writeBytes(sc.nextLine() + "\r\n");
-        
         System.out.println(inFromServer.readLine());
+
+        outToServer.writeBytes("MAIL FROM:<" + senderEmail + "> \r\n");
+        System.out.println(inFromServer.readLine());
+        
+        outToServer.writeBytes("RCPT TO:<" + recipientEmail + "> \r\n");
+        System.out.println(inFromServer.readLine());
+        
+        outToServer.writeBytes("DATA \r\n");
+        System.out.println(inFromServer.readLine());
+
+        outToServer.writeBytes("SUBJECT:" + subject + " \r\n\n");
+
+        outToServer.writeBytes(message + " \r\n");
+        
+        outToServer.writeBytes(". \r\n");
+        System.out.println(inFromServer.readLine());
+        
+        outToServer.writeBytes("QUIT \r\n");
+        System.out.println(inFromServer.readLine());
+        
 
         while(true) {
             System.out.println("Enter 'quit' to disconnect...");
